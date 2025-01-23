@@ -99,4 +99,18 @@ public final class Constants {
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
   }
+
+  public static final class armConstants{
+
+    public static final int armPivotMotor = 2;
+    public static final int armTelescope = 3;
+
+  }
+
+  public static final class intakeConstants{
+
+    public static final int intakePivot = 4;
+    public static final int intakeMotor = 5;
+
+  }
 }
