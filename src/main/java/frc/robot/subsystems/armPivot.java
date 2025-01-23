@@ -40,7 +40,7 @@ public class armPivot extends SubsystemBase {
     .p(0.1)
     .i(0)
     .d(0)
-    .outputRange(-1, 1);
+    .outputRange(0, 1);
     m_armPivotMotor.configure(m_armPivotMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
 
 
