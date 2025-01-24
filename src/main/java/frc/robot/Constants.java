@@ -109,7 +109,7 @@ public final class Constants {
 
   public static final class intakeConstants{
 
-    public static final int intakePivot = 4;
+    public static final int intakePivotMotor = 4;
     public static final int intakeMotor = 5;
 
   }
