@@ -78,6 +78,7 @@ public final class Constants {
 
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kOperatorControllerPort = 1;
     public static final double kDriveDeadband = 0.05;
   }
 
@@ -102,15 +103,16 @@ public final class Constants {
 
   public static final class armConstants{
 
-    public static final int armPivotMotor = 2;
-    public static final int armTelescope = 3;
+    public static final int armPivotMotor = 5;
+    public static final int armTelescope = 12;
 
   }
 
   public static final class intakeConstants{
 
-    public static final int intakePivotMotor = 4;
-    public static final int intakeMotor = 5;
+    public static final int intakePivotMotor = 0;
+    public static final int intakeMotorLeft = 0;
+    public static final int intakeMotorRight = 0;
 
   }
 }

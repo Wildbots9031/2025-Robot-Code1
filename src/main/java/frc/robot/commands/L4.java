@@ -7,26 +7,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.armSubsystem;
 
+
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class L3 extends Command {
+public class L4 extends Command {
   private final armSubsystem m_armSubsystem;
-  /** Creates a new L3. */
-  public L3(armSubsystem L3) {
+  /** Creates a new L4. */
+  public L4(armSubsystem L4) {
     // Use addRequirements() here to declare subsystem dependencies.
- this.m_armSubsystem = L3;
- addRequirements(m_armSubsystem);
+    this.m_armSubsystem = L4;
+    addRequirements(m_armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_armSubsystem.L3_position();
+    m_armSubsystem.L4_position();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_armSubsystem.L3_position();
+    m_armSubsystem.L4_position();
   }
 
   // Called once the command ends or is interrupted.
@@ -36,6 +37,6 @@ public class L3 extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_armSubsystem.armAtL3Position();
+    return m_armSubsystem.armAtL4Position();
   }
 }

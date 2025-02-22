@@ -13,17 +13,38 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
-import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.OIConstants;
+import edu.wpi.first.wpilibj.simulation.JoystickSim;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import java.util.List;
+
+import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.armConstants;
+import frc.robot.Constants.intakeConstants;
+
+import frc.robot.subsystems.armSubsystem;
+import frc.robot.subsystems.intakeWheels;
+
+import frc.robot.commands.intake;
+import frc.robot.commands.intakeWheelsIn;
+import frc.robot.commands.intakeWheelsOff;
+import frc.robot.commands.intakeWheelsOut;
+import frc.robot.commands.keyRelease;
+import frc.robot.commands.L1;
+import frc.robot.commands.L2;
+import frc.robot.commands.L3;
+import frc.robot.commands.L4;
+
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -34,10 +55,12 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final armSubsystem m_armSubsystem = new armSubsystem();
+  private final intakeWheels m_intakeWheels = new intakeWheels();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
-
+  XboxController m_operatorController = new XboxController(OIConstants.kOperatorControllerPort);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -72,7 +95,44 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
-  }
+
+
+    //drive buttons
+
+    //Set X Button for Intake Wheels Off on drive
+    JoystickButton xButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kX.value);
+        xButtonDrive.whileTrue(new intakeWheelsIn(m_intakeWheels));
+
+    //Set Back Button For key release on drive
+    JoystickButton backButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kBack.value);
+        backButtonDrive.onTrue(new keyRelease(m_armSubsystem));
+
+    //Set B Button for intake Wheels Out on drive
+    JoystickButton bButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kB.value);
+        bButtonDrive.whileTrue(new intakeWheelsOut(m_intakeWheels));
+    
+    //Set A button on drive
+    JoystickButton aButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kA.value);
+        aButtonDrive.onTrue(new intakeWheelsIn(m_intakeWheels));
+    
+    //Operator Buttons
+
+    JoystickButton aButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kA.value);
+        aButtonOp.onTrue(new intake(m_armSubsystem));
+   
+    JoystickButton bButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kB.value);
+    JoystickButton xButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kX.value);
+    JoystickButton yButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kY.value);
+    
+    JoystickButton leftBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
+        leftBumperButtonOp.onTrue(new L2(m_armSubsystem));
+
+    JoystickButton rightBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kRightBumper.value);
+         rightBumperButtonOp.onTrue(new L3(m_armSubsystem));
+ 
+         JoystickButton yButtonOp = new JoystickButton(m_operatorController, XboxController.Button.k);
+
+        }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

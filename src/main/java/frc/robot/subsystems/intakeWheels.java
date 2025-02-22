@@ -15,17 +15,18 @@ import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants.intakeConstants;;
 
 
 public class intakeWheels extends SubsystemBase {
   /** Creates a new intakeWheels. */
 
-  private SparkMax m_intakeMotor;
+  private SparkMax m_intakeMotorLeft;
+  private SparkMax m_intakeMotorRight;
 
   public intakeWheels() {
-    m_intakeMotor = new SparkMax(intakeConstants.intakeMotor, MotorType.kBrushless);
+    m_intakeMotorLeft = new SparkMax(intakeConstants.intakeMotorLeft, MotorType.kBrushless);
+    m_intakeMotorRight = new SparkMax(intakeConstants.intakeMotorRight, MotorType.kBrushless);
   }
 
   @Override
@@ -34,7 +35,18 @@ public class intakeWheels extends SubsystemBase {
   }
    
   public void intake_wheels_in(){
-    m_intakeMotor.set(1.0);
+    m_intakeMotorLeft.set(1.0);
+    m_intakeMotorRight.set(-1.0);
   };
   
+  public void intake_wheels_out(){
+    m_intakeMotorLeft.set(-1.0);
+    m_intakeMotorRight.set(1.0);
+  }
+
+  public void intake_wheels_off(){
+    m_intakeMotorLeft.set(0.0);
+    m_intakeMotorRight.set(0.0);
+  }
+
 }
