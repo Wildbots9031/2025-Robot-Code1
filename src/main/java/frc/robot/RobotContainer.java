@@ -101,7 +101,7 @@ public class RobotContainer {
 
     //Set X Button for Intake Wheels Off on drive
     JoystickButton xButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kX.value);
-        xButtonDrive.whileTrue(new intakeWheelsIn(m_intakeWheels));
+        xButtonDrive.whileTrue(new intakeWheelsOff(m_intakeWheels));
 
     //Set Back Button For key release on drive
     JoystickButton backButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kBack.value);
@@ -117,11 +117,14 @@ public class RobotContainer {
     
     //Operator Buttons
 
+    //Set A button on Op
     JoystickButton aButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kA.value);
         aButtonOp.onTrue(new intake(m_armSubsystem));
    
     JoystickButton bButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kB.value);
+
     JoystickButton xButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kX.value);
+
     JoystickButton yButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kY.value);
     
     JoystickButton leftBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
@@ -130,9 +133,8 @@ public class RobotContainer {
     JoystickButton rightBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kRightBumper.value);
          rightBumperButtonOp.onTrue(new L3(m_armSubsystem));
  
-         JoystickButton yButtonOp = new JoystickButton(m_operatorController, XboxController.Button.k);
-
-        }
+//AHHHHHHHHHHHHHHHHHHHHHHHHHHhh - hayley
+    }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
