@@ -34,17 +34,17 @@ public class intakeWheels extends SubsystemBase {
     // This method will be called once per scheduler run
   }
    
-  public void intake_wheels_in(){
+  public void intakeWheelsIn(){
     m_intakeMotorLeft.set(1.0);
     m_intakeMotorRight.set(-1.0);
   };
   
-  public void intake_wheels_out(){
+  public void intakeWheelsOut(){
     m_intakeMotorLeft.set(-1.0);
     m_intakeMotorRight.set(1.0);
   }
 
-  public void intake_wheels_off(){
+  public void intakeWheelsOff(){
     m_intakeMotorLeft.set(0.0);
     m_intakeMotorRight.set(0.0);
   }
