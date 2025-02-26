@@ -101,6 +101,11 @@ public final class Constants {
     public static final double kFreeSpeedRpm = 5676;
   }
 
+  public static final class climbConstants{
+
+    public static final int climbMotor = 16;
+  }
+
   public static final class armConstants{
 
     public static final int armPivotMotor = 5;
