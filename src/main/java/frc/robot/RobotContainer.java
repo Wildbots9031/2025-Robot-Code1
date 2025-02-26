@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj.simulation.JoystickSim;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -49,6 +50,19 @@ import frc.robot.commands.L4;
 import frc.robot.commands.climbPosition;
 import frc.robot.commands.preClimbPosition;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.events.EventTrigger;
+import com.pathplanner.lib.path.GoalEndState;
+import com.pathplanner.lib.path.PathConstraints;
+import com.pathplanner.lib.path.PathPlannerPath;
+import com.pathplanner.lib.path.Waypoint;
+
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -70,8 +84,24 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
+    NamedCommands.registerCommand("L1", new L1(m_armSubsystem));
+    NamedCommands.registerCommand("L2", new L2(m_armSubsystem));
+    NamedCommands.registerCommand("L3", new L3(m_armSubsystem));
+    NamedCommands.registerCommand("L4", new L4(m_armSubsystem));
+
+
+
+
     // Configure the button bindings
     configureButtonBindings();
+
+   // autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+   // SmartDashboard.putData("Auto Mode", autoChooser);
+
+    SmartDashboard.putData("Auto 1", new PathPlannerAuto("Auto 1"));
+    SmartDashboard.putData("Auto 2", new PathPlannerAuto("Auto 2"));
+
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(
@@ -162,6 +192,8 @@ public class RobotContainer {
           //  rightBumperButtonOp.onTrue();
  
 //AHHHHHHHHHHHHHHHHHHHHHHHHHHhh - hayley
+
+
     }
 
   /**
