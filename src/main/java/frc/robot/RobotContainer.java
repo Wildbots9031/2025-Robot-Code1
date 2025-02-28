@@ -42,7 +42,9 @@ import frc.robot.commands.intakeWheelsIn;
 import frc.robot.commands.intakeWheelsOff;
 import frc.robot.commands.intakeWheelsOut;
 import frc.robot.commands.keyRelease;
+import frc.robot.commands.minusSetPointArm;
 import frc.robot.commands.preClimbPosition;
+import frc.robot.commands.AddSetPointCommand;
 import frc.robot.commands.L1;
 import frc.robot.commands.L2;
 import frc.robot.commands.L3;
@@ -76,6 +78,7 @@ public class RobotContainer {
   private final armSubsystem m_armSubsystem = new armSubsystem();
   private final intakeWheels m_intakeWheels = new intakeWheels();
   private final ClimbSubsystem m_ClimbSubsystem = new ClimbSubsystem();
+  //private final SendableChooser<Command> autoChooser;
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -89,6 +92,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("L2", new L2(m_armSubsystem));
     NamedCommands.registerCommand("L3", new L3(m_armSubsystem));
     NamedCommands.registerCommand("L4", new L4(m_armSubsystem));
+    NamedCommands.registerCommand("ScoreCoral", new intakeWheelsOut(m_intakeWheels));
 
 
 
@@ -96,11 +100,11 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-   // autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-   // SmartDashboard.putData("Auto Mode", autoChooser);
+    //autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+    //SmartDashboard.putData("Auto Mode", autoChooser);
 
-    SmartDashboard.putData("Auto 1", new PathPlannerAuto("Auto 1"));
-    SmartDashboard.putData("Auto 2", new PathPlannerAuto("Auto 2"));
+    //SmartDashboard.putData("Auto 1", new PathPlannerAuto("Auto 1"));
+    //SmartDashboard.putData("Auto 2", new PathPlannerAuto("Auto 2"));
 
 
     // Configure default commands
@@ -126,10 +130,10 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_driverController, Button.kR1.value)
-        .whileTrue(new RunCommand(
-            () -> m_robotDrive.setX(),
-            m_robotDrive));
+   // new JoystickButton(m_driverController, Button.kR1.value)
+   //     .whileTrue(new RunCommand(
+   //         () -> m_robotDrive.setX(),
+   //         m_robotDrive));
 
 
         
@@ -159,12 +163,8 @@ public class RobotContainer {
         JoystickButton rightBumperDrive = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
             rightBumperDrive.onTrue(new climbPosition(m_ClimbSubsystem));
 
-        //Set LeftStick Button for keyRelease on Drive
-        //JoystickButton leftStickButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kLeftStick.value);
-          //  leftStickButtonDrive.onTrue(new keyRelease(m_armSubsystem));
-
-
-    
+            
+         JoystickButton triggerButton = new JoystickButton(m_driverController, 1); // Button 1 as trigger
     
     //Operator Controller Buttons
 
@@ -188,9 +188,13 @@ public class RobotContainer {
         JoystickButton leftBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
             leftBumperButtonOp.onTrue(new L4(m_armSubsystem));
 
-        JoystickButton rightBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kRightBumper.value);
-          //  rightBumperButtonOp.onTrue();
+        JoystickButton backOp = new JoystickButton(m_operatorController, XboxController.Button.kBack.value);
+            backOp.onTrue(new AddSetPointCommand(m_armSubsystem));
+
+        JoystickButton startOp = new JoystickButton(m_operatorController, XboxController.Button.kStart.value);
+            startOp.onTrue(new minusSetPointArm(m_armSubsystem));
  
+
 //AHHHHHHHHHHHHHHHHHHHHHHHHHHhh - hayley
 
 
@@ -202,6 +206,10 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+   // return 
+    //return autoChooser.getSelected();  
+
+
     // Create config for trajectory
     TrajectoryConfig config = new TrajectoryConfig(
         AutoConstants.kMaxSpeedMetersPerSecond,
@@ -240,5 +248,6 @@ public class RobotContainer {
 
     // Run path following command, then stop at the end.
     return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
-  }
+  
+    }
 }

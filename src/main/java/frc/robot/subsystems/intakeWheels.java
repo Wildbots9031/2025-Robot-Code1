@@ -35,13 +35,13 @@ public class intakeWheels extends SubsystemBase {
   }
    
   public void intakeWheelsIn(){
-    m_intakeMotorLeft.set(1.0);
-    m_intakeMotorRight.set(-1.0);
+    m_intakeMotorLeft.set(-5.0);
+    m_intakeMotorRight.set(5.0);
   };
   
   public void intakeWheelsOut(){
-    m_intakeMotorLeft.set(-1.0);
-    m_intakeMotorRight.set(1.0);
+    m_intakeMotorLeft.set(5.0);
+    m_intakeMotorRight.set(-5.0);
   }
 
   public void intakeWheelsOff(){
