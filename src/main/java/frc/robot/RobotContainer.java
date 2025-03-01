@@ -78,7 +78,8 @@ public class RobotContainer {
   private final armSubsystem m_armSubsystem = new armSubsystem();
   private final intakeWheels m_intakeWheels = new intakeWheels();
   private final ClimbSubsystem m_ClimbSubsystem = new ClimbSubsystem();
-  //private final SendableChooser<Command> autoChooser;
+  private final SendableChooser<Command> autoChooser;
+  
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -87,6 +88,9 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
+    autoChooser = AutoBuilder.buildAutoChooser();
+    SmartDashboard.putData("Auto Chooser", autoChooser);
 
     NamedCommands.registerCommand("L1", new L1(m_armSubsystem));
     NamedCommands.registerCommand("L2", new L2(m_armSubsystem));
@@ -210,7 +214,7 @@ public class RobotContainer {
     //return autoChooser.getSelected();  
 
 
-    // Create config for trajectory
+    /*  Create config for trajectory
     TrajectoryConfig config = new TrajectoryConfig(
         AutoConstants.kMaxSpeedMetersPerSecond,
         AutoConstants.kMaxAccelerationMetersPerSecondSquared)
@@ -248,6 +252,7 @@ public class RobotContainer {
 
     // Run path following command, then stop at the end.
     return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
-  
+ */
+    return autoChooser.getSelected();
     }
 }
