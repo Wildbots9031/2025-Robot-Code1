@@ -19,10 +19,12 @@ import edu.wpi.first.wpilibj.SPI;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.kauailabs.navx.frc.AHRS;
+
+import com.pathplanner.lib.util.PathPlannerLogging;
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.auto.*;
-import com.pathplanner.lib.commands.*;
-import com.pathplanner.lib.config.*;
+import com.pathplanner.lib.config.RobotConfig;
+import com.pathplanner.lib.config.ModuleConfig;
+import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
 
@@ -100,7 +102,7 @@ public class DriveSubsystem extends SubsystemBase {
             this // Reference to this subsystem to set requirements
     );
   }
-  }
+
 
   @Override
   public void periodic() {

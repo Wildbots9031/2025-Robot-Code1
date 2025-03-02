@@ -89,8 +89,8 @@ public class RobotContainer {
    */
   public RobotContainer() {
 
-    autoChooser = AutoBuilder.buildAutoChooser();
-    SmartDashboard.putData("Auto Chooser", autoChooser);
+ //   autoChooser = AutoBuilder.buildAutoChooser();
+ //   SmartDashboard.putData("Auto Chooser", autoChooser);
 
     NamedCommands.registerCommand("L1", new L1(m_armSubsystem));
     NamedCommands.registerCommand("L2", new L2(m_armSubsystem));
@@ -104,11 +104,11 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    //autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-    //SmartDashboard.putData("Auto Mode", autoChooser);
+    autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+    SmartDashboard.putData("Auto Mode", autoChooser);
 
-    //SmartDashboard.putData("Auto 1", new PathPlannerAuto("Auto 1"));
-    //SmartDashboard.putData("Auto 2", new PathPlannerAuto("Auto 2"));
+    SmartDashboard.putData("Auto 1", new PathPlannerAuto("Auto 1"));
+    SmartDashboard.putData("Auto 2", new PathPlannerAuto("Auto 2"));
 
 
     // Configure default commands
@@ -210,12 +210,9 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-   // return 
-    //return autoChooser.getSelected();  
 
-
-    /*  Create config for trajectory
-    TrajectoryConfig config = new TrajectoryConfig(
+    //  Create config for trajectory
+   /* TrajectoryConfig config = new TrajectoryConfig(
         AutoConstants.kMaxSpeedMetersPerSecond,
         AutoConstants.kMaxAccelerationMetersPerSecondSquared)
         // Add kinematics to ensure max speed is actually obeyed
