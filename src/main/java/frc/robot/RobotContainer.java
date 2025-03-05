@@ -89,14 +89,17 @@ public class RobotContainer {
    */
   public RobotContainer() {
 
- //   autoChooser = AutoBuilder.buildAutoChooser();
- //   SmartDashboard.putData("Auto Chooser", autoChooser);
+   autoChooser = AutoBuilder.buildAutoChooser();
+   SmartDashboard.putData("Auto Chooser", autoChooser);
 
     NamedCommands.registerCommand("L1", new L1(m_armSubsystem));
     NamedCommands.registerCommand("L2", new L2(m_armSubsystem));
     NamedCommands.registerCommand("L3", new L3(m_armSubsystem));
     NamedCommands.registerCommand("L4", new L4(m_armSubsystem));
-    NamedCommands.registerCommand("ScoreCoral", new intakeWheelsOut(m_intakeWheels));
+    NamedCommands.registerCommand("KeyRelease", new keyRelease(m_armSubsystem));
+    NamedCommands.registerCommand("IntakeWheelsOut", new intakeWheelsOut(m_intakeWheels));
+    NamedCommands.registerCommand("IntakePosition", new intake(m_armSubsystem));
+    NamedCommands.registerCommand("IntakeWheelsIn", new intakeWheelsIn(m_intakeWheels));
 
 
 
@@ -104,11 +107,11 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-    SmartDashboard.putData("Auto Mode", autoChooser);
+   // autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+   // SmartDashboard.putData("Auto Mode", autoChooser);
 
-    SmartDashboard.putData("Auto 1", new PathPlannerAuto("Auto 1"));
-    SmartDashboard.putData("Auto 2", new PathPlannerAuto("Auto 2"));
+  //  SmartDashboard.putData("Auto 1", new PathPlannerAuto("Auto 1"));
+   // SmartDashboard.putData("Auto 2", new PathPlannerAuto("Auto 2"));
 
 
     // Configure default commands
@@ -212,7 +215,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
 
     //  Create config for trajectory
-   /* TrajectoryConfig config = new TrajectoryConfig(
+    TrajectoryConfig config = new TrajectoryConfig(
         AutoConstants.kMaxSpeedMetersPerSecond,
         AutoConstants.kMaxAccelerationMetersPerSecondSquared)
         // Add kinematics to ensure max speed is actually obeyed
@@ -249,7 +252,7 @@ public class RobotContainer {
 
     // Run path following command, then stop at the end.
     return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
- */
-    return autoChooser.getSelected();
+ 
+   // return autoChooser.getSelected();
     }
 }

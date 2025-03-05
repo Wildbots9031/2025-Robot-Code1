@@ -118,19 +118,19 @@ public class armSubsystem extends SubsystemBase {
 
 
   public void L1_position(){
-    m_PIDArmPivot.setReference(-3,ControlType.kPosition);
+    m_PIDArmPivot.setReference(-2,ControlType.kPosition);
     m_PIDIntakePivot.setReference(0,ControlType.kPosition);
-    m_PIDarmTelescope.setReference(15, ControlType.kPosition);
+    m_PIDarmTelescope.setReference(2, ControlType.kPosition);
     };
 
   public final boolean arm_at_pos_01(){
-   return ((m_encoderArmPivot.getPosition() > -3) && (m_encoderArmPivot.getPosition() < -3));
+   return ((m_encoderArmPivot.getPosition() > -2) && (m_encoderArmPivot.getPosition() < -2));
   };
   public final boolean intake_at_pos_01(){
      return (m_encoderIntakePivotMotor.getPosition() > 00) && (m_encoderIntakePivotMotor.getPosition() < 00);
   };
   public final boolean telescope_at_pos_01(){
-    return (m_encoderArmTelescope.getPosition() > 15) && (m_encoderArmPivot.getPosition() < 15);
+    return (m_encoderArmTelescope.getPosition() > 2) && (m_encoderArmPivot.getPosition() < 2);
   };
   public final boolean armAtL1Position() {
      return (arm_at_pos_01()) && (intake_at_pos_neg4()) && (telescope_at_pos_01());
@@ -138,16 +138,16 @@ public class armSubsystem extends SubsystemBase {
   
 
   public void L2_position(){
-    m_PIDArmPivot.setReference(-1,ControlType.kPosition);
+    m_PIDArmPivot.setReference(1,ControlType.kPosition);
     m_PIDIntakePivot.setReference(0,ControlType.kPosition);
-    m_PIDarmTelescope.setReference(10, ControlType.kPosition);
+    m_PIDarmTelescope.setReference(0, ControlType.kPosition);
     };
 
     public final boolean arm_at_pos_neg1(){
-      return ((m_encoderArmPivot.getPosition() > -1) && (m_encoderArmPivot.getPosition() < -1));
+      return ((m_encoderArmPivot.getPosition() > 1) && (m_encoderArmPivot.getPosition() < 1));
      };
      public final boolean telescope_at_pos_6(){
-       return (m_encoderArmTelescope.getPosition() > 10) && (m_encoderArmPivot.getPosition() < 10);
+       return (m_encoderArmTelescope.getPosition() > 0) && (m_encoderArmPivot.getPosition() < 0);
      };
      public final boolean armAtL2Position() {
         return (arm_at_pos_neg1()) && (telescope_at_pos_6());
@@ -156,44 +156,44 @@ public class armSubsystem extends SubsystemBase {
   public void L3_position(){
     m_PIDArmPivot.setReference(3,ControlType.kPosition);
     m_PIDIntakePivot.setReference(0,ControlType.kPosition);
-    m_PIDarmTelescope.setReference(270, ControlType.kPosition);
+    m_PIDarmTelescope.setReference(261, ControlType.kPosition);
   };
 
   public final boolean arm_at_pos_10(){
-    return ((m_encoderArmPivot.getPosition() > 9.5) && (m_encoderArmPivot.getPosition() < 10.5));
+    return ((m_encoderArmPivot.getPosition() > 3) && (m_encoderArmPivot.getPosition() < 3));
    };
    public final boolean intake_at_pos_00(){
       return (m_encoderIntakePivotMotor.getPosition() > 00) && (m_encoderIntakePivotMotor.getPosition() < 00);
    };
    public final boolean telescope_at_pos_222(){
-     return (m_encoderArmTelescope.getPosition() > 270) && (m_encoderArmPivot.getPosition() < 270);
+     return (m_encoderArmTelescope.getPosition() > 261) && (m_encoderArmPivot.getPosition() < 261);
    };
    public final boolean armAtL3Position() {
       return (arm_at_pos_10()) && (intake_at_pos_00()) && (telescope_at_pos_222());
    };
  
   public void L4_position(){
-    m_PIDArmPivot.setReference(6,ControlType.kPosition);
-    m_PIDIntakePivot.setReference(-3.5,ControlType.kPosition);
-    m_PIDarmTelescope.setReference(500, ControlType.kPosition);
+    m_PIDArmPivot.setReference(7,ControlType.kPosition);
+    m_PIDIntakePivot.setReference(-3,ControlType.kPosition);
+    m_PIDarmTelescope.setReference(382, ControlType.kPosition);
   };
 
   
  public final boolean arm_at_pos_06(){
-    return ((m_encoderArmPivot.getPosition() > 6) && (m_encoderArmPivot.getPosition() < 6));
+    return ((m_encoderArmPivot.getPosition() > 7) && (m_encoderArmPivot.getPosition() < 7));
    };
    public final boolean intake_at_pos_neg03(){
-      return (m_encoderIntakePivotMotor.getPosition() > -3.3) && (m_encoderIntakePivotMotor.getPosition() < -3.7);
+      return (m_encoderIntakePivotMotor.getPosition() > -3) && (m_encoderIntakePivotMotor.getPosition() < -3);
    };
    public final boolean telescope_at_pos_500(){
-     return (m_encoderArmTelescope.getPosition() > 499) && (m_encoderArmPivot.getPosition() < 501);
+     return (m_encoderArmTelescope.getPosition() > 382) && (m_encoderArmPivot.getPosition() < 382);
    };
    public final boolean armAtL4Position() {
       return (arm_at_pos_06()) && (intake_at_pos_neg03()) && (telescope_at_pos_500());
    };
 
   public void keyRelease_position(){
-    m_PIDArmPivot.setReference(7,ControlType.kPosition);
+    m_PIDArmPivot.setReference(4,ControlType.kPosition);
   };
 
 

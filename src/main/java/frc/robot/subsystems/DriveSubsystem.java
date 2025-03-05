@@ -64,21 +64,54 @@ public class DriveSubsystem extends SubsystemBase {
           m_rearRight.getPosition()
       });
 
+      public ChassisSpeeds getRobotRelativeSpeeds() {
+        return DriveConstants.kDriveKinematics.toChassisSpeeds(
+            m_frontLeft.getState(),
+            m_frontRight.getState(),
+            m_rearLeft.getState(),
+            m_rearRight.getState()
+          );
+      }
+
+      public void resetPose(Pose2d pose) {
+        m_odometry.resetPosition(
+            Rotation2d.fromDegrees(m_gyro.getAngle()),
+            new SwerveModulePosition[] {
+                m_frontLeft.getPosition(),
+                m_frontRight.getPosition(),
+                m_rearLeft.getPosition(),
+                m_rearRight.getPosition()
+            },
+            pose);
+      }
+
+public void driveRobotRelative(ChassisSpeeds speeds) {
+  var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(speeds);
+    
+  SwerveDriveKinematics.desaturateWheelSpeeds(
+     swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
+      m_frontLeft.setDesiredState(swerveModuleStates[0]);
+      m_frontRight.setDesiredState(swerveModuleStates[1]);
+      m_rearLeft.setDesiredState(swerveModuleStates[2]);
+      m_rearRight.setDesiredState(swerveModuleStates[3]);
+      }
+
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     // Usage reporting for MAXSwerve template
     HAL.report(tResourceType.kResourceType_RobotDrive, tInstances.kRobotDriveSwerve_MaxSwerve);
 
     RobotConfig config;
-    try{
+    try {
       config = RobotConfig.fromGUISettings();
     } catch (Exception e) {
       // Handle exception as needed
       e.printStackTrace();
+      config = null; // Set to null or handle as needed
     }
 
     // Configure AutoBuilder last
-    AutoBuilder.configure(
+     AutoBuilder.configure(
             this::getPose, // Robot pose supplier
             this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
             this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
@@ -101,6 +134,7 @@ public class DriveSubsystem extends SubsystemBase {
             },
             this // Reference to this subsystem to set requirements
     );
+    
   }
 
 
@@ -125,7 +159,6 @@ public class DriveSubsystem extends SubsystemBase {
   public Pose2d getPose() {
     return m_odometry.getPoseMeters();
   }
-
   /**
    * Resets the odometry to the specified pose.
    *
