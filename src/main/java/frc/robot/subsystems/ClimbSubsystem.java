@@ -50,10 +50,10 @@ public class ClimbSubsystem extends SubsystemBase {
   }
 
   public void pre_Climb_position(){
-    m_PIDclimbMotor.setReference(-93,ControlType.kPosition);
+    m_PIDclimbMotor.setReference(-123,ControlType.kPosition);
   }
 
   public void climb_position(){
-    m_PIDclimbMotor.setReference(-100, ControlType.kPosition);
+    m_PIDclimbMotor.setReference(-0, ControlType.kPosition);
   }
 }

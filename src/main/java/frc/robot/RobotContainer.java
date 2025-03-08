@@ -89,10 +89,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
 
-   autoChooser = AutoBuilder.buildAutoChooser();
-   SmartDashboard.putData("Auto Chooser", autoChooser);
-
-    NamedCommands.registerCommand("L1", new L1(m_armSubsystem));
+   // NamedCommands.registerCommand("L1", cf.setSetpointCommand(Setpoint.kL1));
     NamedCommands.registerCommand("L2", new L2(m_armSubsystem));
     NamedCommands.registerCommand("L3", new L3(m_armSubsystem));
     NamedCommands.registerCommand("L4", new L4(m_armSubsystem));
@@ -100,9 +97,12 @@ public class RobotContainer {
     NamedCommands.registerCommand("IntakeWheelsOut", new intakeWheelsOut(m_intakeWheels));
     NamedCommands.registerCommand("IntakePosition", new intake(m_armSubsystem));
     NamedCommands.registerCommand("IntakeWheelsIn", new intakeWheelsIn(m_intakeWheels));
+    NamedCommands.registerCommand("IntakeWheelsOff", new intakeWheelsOff(m_intakeWheels));
 
 
-
+    autoChooser = AutoBuilder.buildAutoChooser();
+    SmartDashboard.putData("Auto Chooser", autoChooser);
+ 
 
     // Configure the button bindings
     configureButtonBindings();
@@ -180,8 +180,8 @@ public class RobotContainer {
             aButtonOp.onTrue(new intake(m_armSubsystem));
    
        //Set B button on op for L3
-        JoystickButton bButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kB.value);
-            bButtonOp.onTrue(new L3(m_armSubsystem));
+       // JoystickButton bButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kB.value);
+          //  bButtonOp.onTrue(new L3(m_armSubsystem));
 
         //Set X button on Op for L1
         JoystickButton xButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kX.value);
@@ -192,14 +192,14 @@ public class RobotContainer {
             yButtonOp.onTrue(new L2(m_armSubsystem));
     
         //Set Left Bumper on Op for L4
-        JoystickButton leftBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
-            leftBumperButtonOp.onTrue(new L4(m_armSubsystem));
+       // JoystickButton leftBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
+         //   leftBumperButtonOp.onTrue(new L4(m_armSubsystem));
 
-        JoystickButton backOp = new JoystickButton(m_operatorController, XboxController.Button.kBack.value);
-            backOp.onTrue(new AddSetPointCommand(m_armSubsystem));
+       JoystickButton LeftBumperOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
+            LeftBumperOp.onTrue(new AddSetPointCommand(m_armSubsystem));
 
-        JoystickButton startOp = new JoystickButton(m_operatorController, XboxController.Button.kStart.value);
-            startOp.onTrue(new minusSetPointArm(m_armSubsystem));
+        JoystickButton RightBumperOp = new JoystickButton(m_operatorController, XboxController.Button.kRightBumper.value);
+            RightBumperOp.onTrue(new minusSetPointArm(m_armSubsystem));
  
 
 //AHHHHHHHHHHHHHHHHHHHHHHHHHHhh - hayley
@@ -251,8 +251,8 @@ public class RobotContainer {
     m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
+   // return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
  
-   // return autoChooser.getSelected();
+    return autoChooser.getSelected();
     }
 }

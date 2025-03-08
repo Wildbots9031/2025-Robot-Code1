@@ -24,7 +24,7 @@ public class minusSetPointArm extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_armSubsystem.lower_arm();
+    m_armSubsystem.lower_intake();
   }
 
   // Called once the command ends or is interrupted.
@@ -34,6 +34,6 @@ public class minusSetPointArm extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_armSubsystem.intakeDownTrue();
   }
 }

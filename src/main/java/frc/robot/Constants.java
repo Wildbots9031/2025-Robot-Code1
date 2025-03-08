@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.config.PIDConstants;
+import com.pathplanner.lib.config.ModuleConfig;
+import com.pathplanner.lib.config.RobotConfig;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -26,6 +29,8 @@ import frc.lib.limelightOffset;
  */
 public final class Constants {
   public static final class DriveConstants {
+    public static final PIDConstants kTranslationPID = new PIDConstants(1.0, 0.0, 0.0);
+    public static final PIDConstants kRotationPID = new PIDConstants(1.0, 0.0, 0.0);
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4.8;
