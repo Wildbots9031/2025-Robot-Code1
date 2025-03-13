@@ -56,5 +56,8 @@
     "edu.wpi.first.math.proto.*",
     "edu.wpi.first.math.**.proto.*",
     "edu.wpi.first.math.**.struct.*",
-  ]
+  ],
+  "workbench.preferredLightColorTheme": "Default Light+",
+  "workbench.preferredHighContrastLightColorTheme": "Default Light+",
+  "workbench.colorTheme": "Default Dark Modern"
 }

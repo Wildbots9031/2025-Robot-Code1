@@ -10,6 +10,7 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.math.controller.HolonomicDriveController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
@@ -31,6 +32,8 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
 
 public class DriveSubsystem extends SubsystemBase {
+
+
   // Create MAXSwerveModules
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
       DriveConstants.kFrontLeftDrivingCanId,
@@ -52,6 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kRearRightTurningCanId,
       DriveConstants.kBackRightChassisAngularOffset);
 
+
   // The gyro sensor
     private final AHRS m_gyro = new AHRS(SPI.Port.kMXP); 
 
@@ -68,6 +72,16 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Creates a new DriveSubsystem. */
 
+   public void drive(Translation2d translation, double rotation, boolean fieldRelative) {
+    swerveDrive.drive(translation,
+                rotation,
+                false
+                ); // Open loop is disabled since it shouldn't be used most of the time.
+          }
+
+   public void drive(ChassisSpeeds velocity) {
+       swerveDrive.drive(velocity);
+       }
 
   @Override
   public void periodic() {
@@ -106,8 +120,9 @@ public class DriveSubsystem extends SubsystemBase {
         },
         pose);
   }
-
-  /**
+ 
+        
+      /**
    * Method to drive the robot using joystick info.
    *
    * @param xSpeed        Speed of the robot in the x direction (forward).
@@ -200,7 +215,9 @@ public class DriveSubsystem extends SubsystemBase {
     setModuleStates(swerveModuleStates);
 
   }
-  private ChassisSpeeds RobotRelativSpeeds(){
+
+          
+      private ChassisSpeeds RobotRelativSpeeds(){
     return Constants.DriveConstants.kDriveKinematics.toChassisSpeeds(getModuleStates());
   }
   private SwerveModuleState[] getModuleStates(){
@@ -213,6 +230,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
+
     // Usage reporting for MAXSwerve template
     HAL.report(tResourceType.kResourceType_RobotDrive, tInstances.kRobotDriveSwerve_MaxSwerve);
 

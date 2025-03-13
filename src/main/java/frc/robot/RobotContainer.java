@@ -41,7 +41,6 @@ import frc.robot.commands.intake;
 import frc.robot.commands.intakeWheelsIn;
 import frc.robot.commands.intakeWheelsOff;
 import frc.robot.commands.intakeWheelsOut;
-import frc.robot.commands.keyRelease;
 import frc.robot.commands.minusSetPointArm;
 import frc.robot.commands.preClimbPosition;
 import frc.robot.commands.AddSetPointCommand;
@@ -93,7 +92,6 @@ public class RobotContainer {
     NamedCommands.registerCommand("L2", new L2(m_armSubsystem));
     NamedCommands.registerCommand("L3", new L3(m_armSubsystem));
     NamedCommands.registerCommand("L4", new L4(m_armSubsystem));
-    NamedCommands.registerCommand("KeyRelease", new keyRelease(m_armSubsystem));
     NamedCommands.registerCommand("IntakeWheelsOut", new intakeWheelsOut(m_intakeWheels));
     NamedCommands.registerCommand("IntakePosition", new intake(m_armSubsystem));
     NamedCommands.registerCommand("IntakeWheelsIn", new intakeWheelsIn(m_intakeWheels));
@@ -146,22 +144,6 @@ public class RobotContainer {
         
     //Drive Controller buttons
 
-        //Set A button on drive for intake wheels in
-        JoystickButton aButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kA.value);
-            aButtonDrive.onTrue(new intakeWheelsIn(m_intakeWheels));
-
-        //Set B Button for intake Wheels Out on drive
-        JoystickButton bButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kB.value);
-            bButtonDrive.whileTrue(new intakeWheelsOut(m_intakeWheels));
-
-        //Set X Button for Intake Wheels Off on drive
-        JoystickButton xButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kX.value);
-            xButtonDrive.whileTrue(new intakeWheelsOff(m_intakeWheels));
-
-        //Set Back Button For key release on drive
-        JoystickButton backButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kBack.value);
-            backButtonDrive.onTrue(new keyRelease(m_armSubsystem));
-
         //Set Left Bumper for pre climb position on Drive
         JoystickButton leftBumperDrive = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
             leftBumperDrive.onTrue(new preClimbPosition(m_ClimbSubsystem));
@@ -170,39 +152,41 @@ public class RobotContainer {
         JoystickButton rightBumperDrive = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
             rightBumperDrive.onTrue(new climbPosition(m_ClimbSubsystem));
 
-            
-         JoystickButton triggerButton = new JoystickButton(m_driverController, 1); // Button 1 as trigger
-    
+                
     //Operator Controller Buttons
 
-        //Set A button on Op for intake
+        //Set A button on Op for intake wheels in
         JoystickButton aButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kA.value);
-            aButtonOp.onTrue(new intake(m_armSubsystem));
+            aButtonOp.onTrue(new intakeWheelsIn(m_intakeWheels));
    
-       //Set B button on op for L3
-       // JoystickButton bButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kB.value);
-          //  bButtonOp.onTrue(new L3(m_armSubsystem));
+       //Set B button on op for intake wheels out
+        JoystickButton bButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kB.value);
+            bButtonOp.onTrue(new intakeWheelsOut(m_intakeWheels));
 
-        //Set X button on Op for L1
+        //Set X button on Op for intake wheels off
         JoystickButton xButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kX.value);
-            xButtonOp.onTrue(new L1(m_armSubsystem));
+            xButtonOp.onTrue(new intakeWheelsOff(m_intakeWheels));
 
-        //Set Y button on Op for L2
+        //Set Y button on Op for L1
         JoystickButton yButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kY.value);
-            yButtonOp.onTrue(new L2(m_armSubsystem));
+            yButtonOp.onTrue(new L1(m_armSubsystem));
     
         //Set Left Bumper on Op for L4
        // JoystickButton leftBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
          //   leftBumperButtonOp.onTrue(new L4(m_armSubsystem));
 
-       JoystickButton LeftBumperOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
-            LeftBumperOp.onTrue(new AddSetPointCommand(m_armSubsystem));
+        //Set Left Bumber to L2 Positon
+        JoystickButton LeftBumperOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
+            LeftBumperOp.onTrue(new L2(m_armSubsystem));
 
+        //set Right Bumper to L3 Position
         JoystickButton RightBumperOp = new JoystickButton(m_operatorController, XboxController.Button.kRightBumper.value);
-            RightBumperOp.onTrue(new minusSetPointArm(m_armSubsystem));
+            RightBumperOp.onTrue(new L3(m_armSubsystem));
  
+        JoystickButton StartButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kStart.value);
+            StartButtonOp.onTrue(new intake(m_armSubsystem));
 
-//AHHHHHHHHHHHHHHHHHHHHHHHHHHhh - hayley
+            //AHHHHHHHHHHHHHHHHHHHHHHHHHHhh - hayley
 
 
     }

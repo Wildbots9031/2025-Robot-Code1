@@ -17,20 +17,7 @@
               {
                 "type": "sequential",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "KeyRelease"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "L2"
-                      }
-                    }
-                  ]
+                  "commands": []
                 }
               }
             ]

@@ -20,7 +20,7 @@ public class L2 extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_armSubsystem.L2_position();
+    //m_armSubsystem.L2_position();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

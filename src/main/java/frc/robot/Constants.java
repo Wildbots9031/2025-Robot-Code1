@@ -85,6 +85,20 @@ public final class Constants {
      public static final double kIrotation = 0;
      public static final double kDrotation = 0;
 
+
+    public static final double X_REEF_ALIGNMENT_P = 0;
+    public static final double Y_REEF_ALIGNMENT_P = 0;
+    public static final double ROT_REEF_ALIGNMENT_P = 0;
+
+    public static final double ROT_SETPOINT_REEF_ALIGNMENT = 0;
+    public static final double ROT_TOLERANCE_REEF_ALIGNMENT = 0;
+    public static final double X_SETPOINT_REEF_ALIGNMENT = 0;
+    public static final double Y_SETPOINT_REEF_ALIGNMENT = 0;
+    public static final double Y_TOLERANCE_REEF_ALIGNMENT = 0;
+    public static final double X_TOLERANCE_REEF_ALIGNMENT = 0;
+    public static final double DONT_SEE_TAG_WAIT_TIME = 0;
+    public static final double POSE_VALIDATION_TIME = 0;
+
         public static final class aprilTag{
 
             public static double driveOffset = 5.4;
@@ -93,6 +107,8 @@ public final class Constants {
 
             public static final limelightOffset offsets =  
         new limelightOffset(driveOffset, strafeOffset, rotationOffset);
+
+    
 
         }
       }
@@ -146,7 +162,6 @@ public final class Constants {
 
   public static final class armConstants{
 
-    public static final int armPivotMotor = 5;
     public static final int armTelescope = 12;
 
   }
