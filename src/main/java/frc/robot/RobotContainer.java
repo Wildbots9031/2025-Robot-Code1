@@ -152,6 +152,11 @@ public class RobotContainer {
         JoystickButton rightBumperDrive = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
             rightBumperDrive.onTrue(new climbPosition(m_ClimbSubsystem));
 
+        //Set up x button for autoAlign
+        JoystickButton xButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kX.value);
+            xButtonDrive.onTrue(new climbPosition(m_ClimbSubsystem));
+
+        
                 
     //Operator Controller Buttons
 

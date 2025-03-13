@@ -72,17 +72,6 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Creates a new DriveSubsystem. */
 
-   public void drive(Translation2d translation, double rotation, boolean fieldRelative) {
-    swerveDrive.drive(translation,
-                rotation,
-                false
-                ); // Open loop is disabled since it shouldn't be used most of the time.
-          }
-
-   public void drive(ChassisSpeeds velocity) {
-       swerveDrive.drive(velocity);
-       }
-
   @Override
   public void periodic() {
     // Update the odometry in the periodic block
