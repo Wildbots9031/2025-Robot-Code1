@@ -73,7 +73,7 @@ public class armSubsystem extends SubsystemBase {
   }
 
   public void intake_position(){
-    m_PIDIntakePivot.setReference(-3,ControlType.kPosition);
+    m_PIDIntakePivot.setReference(-1.8,ControlType.kPosition);
     m_PIDarmTelescope.setReference(0, ControlType.kPosition);
       
   };
@@ -123,14 +123,14 @@ public class armSubsystem extends SubsystemBase {
    
   public void L3_position(){
     m_PIDIntakePivot.setReference(0,ControlType.kPosition);
-    m_PIDarmTelescope.setReference(275, ControlType.kPosition);
+    m_PIDarmTelescope.setReference(305, ControlType.kPosition);
   };
 
    public final boolean intake_at_pos_00(){
       return (m_encoderIntakePivotMotor.getPosition() > 00) && (m_encoderIntakePivotMotor.getPosition() < 00);
    };
    public final boolean telescope_at_pos_275(){
-     return (m_encoderArmTelescope.getPosition() > 274 && (m_encoderArmTelescope.getPosition() < 276));
+     return (m_encoderArmTelescope.getPosition() > 305 && (m_encoderArmTelescope.getPosition() < 305));
    };
    public final boolean armAtL3Position() {
       return (intake_at_pos_00()) && (telescope_at_pos_275());

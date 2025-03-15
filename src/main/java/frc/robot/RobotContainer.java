@@ -44,6 +44,7 @@ import frc.robot.commands.intakeWheelsOut;
 import frc.robot.commands.minusSetPointArm;
 import frc.robot.commands.preClimbPosition;
 import frc.robot.commands.AddSetPointCommand;
+import frc.robot.commands.AlignToReefTagRelative;
 import frc.robot.commands.L1;
 import frc.robot.commands.L2;
 import frc.robot.commands.L3;
@@ -154,7 +155,7 @@ public class RobotContainer {
 
         //Set up x button for autoAlign
         JoystickButton xButtonDrive = new JoystickButton(m_driverController, XboxController.Button.kX.value);
-            xButtonDrive.onTrue(new climbPosition(m_ClimbSubsystem));
+            xButtonDrive.onTrue(new AlignToReefTagRelative(false, m_robotDrive));
 
         
                 

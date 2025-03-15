@@ -24,7 +24,7 @@ public class LimeLightObject extends SubsystemBase{
 
     private double x; //April tag x offset
 
-    private double y; //April tag offset
+    private double y; //April tag y offset
 
     private double a; //April tag target area
 
