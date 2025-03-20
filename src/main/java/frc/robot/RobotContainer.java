@@ -173,9 +173,9 @@ public class RobotContainer {
         JoystickButton xButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kX.value);
             xButtonOp.onTrue(new intakeWheelsOff(m_intakeWheels));
 
-        //Set Y button on Op for L1
+        //Set Y button on Op for Intake position
         JoystickButton yButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kY.value);
-            yButtonOp.onTrue(new L1(m_armSubsystem));
+            yButtonOp.onTrue(new intake(m_armSubsystem));
     
         //Set Left Bumper on Op for L4
        // JoystickButton leftBumperButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
@@ -189,9 +189,7 @@ public class RobotContainer {
         JoystickButton RightBumperOp = new JoystickButton(m_operatorController, XboxController.Button.kRightBumper.value);
             RightBumperOp.onTrue(new L3(m_armSubsystem));
  
-        JoystickButton StartButtonOp = new JoystickButton(m_operatorController, XboxController.Button.kStart.value);
-            StartButtonOp.onTrue(new intake(m_armSubsystem));
-
+ 
             //AHHHHHHHHHHHHHHHHHHHHHHHHHHhh - hayley
 
 

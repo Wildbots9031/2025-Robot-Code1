@@ -48,7 +48,7 @@
   "folder": "Red to R2",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 53.426969021104156
+    "rotation": 53.42696902110416
   },
   "useDefaultConstraints": true
 }

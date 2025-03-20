@@ -73,7 +73,7 @@ public class armSubsystem extends SubsystemBase {
   }
 
   public void intake_position(){
-    m_PIDIntakePivot.setReference(-1.8,ControlType.kPosition);
+    m_PIDIntakePivot.setReference(-2,ControlType.kPosition);
     m_PIDarmTelescope.setReference(0, ControlType.kPosition);
       
   };

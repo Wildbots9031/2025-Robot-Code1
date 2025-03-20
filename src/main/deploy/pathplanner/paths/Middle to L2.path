@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 12.263422131147541,
-        "y": 5.097899590163934
+        "x": 7.58,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.723975409836065,
-        "y": 6.428534836065573
+        "x": 6.764836065573769,
+        "y": 4.191803278688524
       },
       "isLocked": false,
-      "linkedName": "RedSide 2 left rung"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 15.895696721314824,
-        "y": 7.291649590159657
+        "x": 5.742110655737705,
+        "y": 4.1748463114754095
       },
       "prevControl": {
-        "x": 15.356250000003348,
-        "y": 7.027920081962935
+        "x": 6.521311475409836,
+        "y": 4.162858606557377
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Red Top Coral Statio"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 53.42696902110416
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Red to R2",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -59.99999999999999
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }
